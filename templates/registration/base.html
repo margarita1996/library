@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+	<head>
+		<title>Library</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/library.css' %}">
+		
+	</head>
+	<body>
+	    <div class="page-header">
+			<h1><a href="/library/"> Библиотека </a></h1>
+		</div>
+		<div class="background" style="background-image: url('{% static 'img/library.jpg' %}');"> 
+			<div class="page-manu">
+				{% if user.is_authenticated %}			
+					<li><a href="">Пользователь: {{ user.get_username }}</a></li>
+					<li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
+				{% else %}   
+					<li><a href="{% url 'login'%}?next={{request.path}}">Войти</a> </li> 
+				{% endif %} 
+			</div>
+		
+			<div class="page-content" >
+	            {% block content %}
+		        {% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

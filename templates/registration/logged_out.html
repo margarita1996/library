@@ -1,0 +1,7 @@
+{% extends 'registration/base.html' %}
+{% block content %}	
+	<p>Вы вышли со страницы администратора сайта</p>  
+
+	<p><a href="{% url 'login'%}">Нажмите сюда, чтобы зайти снова.</a></p>
+	<p><a href="{% url 'main'%}">Нажмите сюда, чтобы перейти на сайт библиотеки.</a></p>
+{% endblock %}

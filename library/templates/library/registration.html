@@ -1,0 +1,9 @@
+{% extends 'library/base.html' %}
+{% block content %}		
+	<h3> Заполните поля для регистрации</h3>	
+
+	<form method="POST" class="post-form">{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="save btn btn-default">Зарегистрироваться</button>
+	</form>
+{% endblock %}

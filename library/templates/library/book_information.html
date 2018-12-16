@@ -1,0 +1,12 @@
+{% extends 'library/base.html' %}
+{% block content %}
+	<h2> {{book.title}} </h2>
+	<h4> Дата издания - {{book.date}} </h4>
+	<h4> Фамилия автора -  {{book.author}} </h4>
+	{% if flag == 0 %}
+		<h4> Рецензия -  {{book.info}} </h4>
+	{% else %}
+		<h4> Рецензии нет, но еще не вечер  </h4>
+	{% endif %}
+	<h3> <a href="{% url 'comment' pk=book.id %}">Хотите добавить рецензию на книгу?</a> </h3>		
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'library/base.html' %}
+{% block content %}
+	{% for book in books %}
+	    <ul class="book-list">
+			<li><a href="{% url 'book_information' pk=book.id %}">{{book.title}}</a> </li>		
+		</ul>
+	{% endfor %}
+{% endblock %}
