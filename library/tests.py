@@ -1,10 +1,43 @@
-
-
-		
-		from django.test import TestCase
+from django.test import TestCase
 from library.models import Book, Author
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+
+
+class LibraryModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        print("setUpTestData: Run once to set up non-modified data for all class methods.")
+        Author.objects.create(id = 1, name = 'Aleksandr', surname = 'Pushkin', date = '2018-05-01')
+        author_ = Author.objects.get(id = 1)
+        Book.objects.create(id = 1, title = 'kapytanskaya dochka', date = '2018-05-05', author = author_, info = None)
+
+# model Author
+    def test_lable_name(self):
+        print("Method: test_lable_name.")
+        author = Author.objects.get(id = 1)
+        field_lable = author._meta.get_field('name').verbose_name
+        self.assertEqual(field_lable,'Имя автора')
+
+    def test_lable_surname(self):
+        print("Method: test_lable_surname.")
+        author = Author.objects.get(id = 1)
+        field_lable = author._meta.get_field('surname').verbose_name
+        self.assertEqual(field_lable,'Фамилия автора')
+
+    def test_lable_date(self):
+        print("Method: test_lable_date.")
+        author = Author.objects.get(id = 1)
+        field_lable = author._meta.get_field('date').verbose_name
+        self.assertEqual(field_lable,'Дата рождения автора')
+
+    def test_object_name(self):
+        print("Method: test_object_name.")
+        author = Author.objects.get(id = 1)
+        expected_object_surname = '%s' % (author.surname)
+        self.assertEqual(expected_object_surname, str(author))
+
 
 
 class LibraryTest(TestCase):
